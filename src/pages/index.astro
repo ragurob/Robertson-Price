@@ -22,6 +22,9 @@ const recentPosts = allPosts
   .hero-cta:hover { background: var(--color-accent-hover); transform: translateY(-1px); }
   .hero-cta svg { width: 16px; height: 16px; transition: transform 0.25s ease; }
   .hero-cta:hover svg { transform: translateX(3px); }
+  .hero-ctas { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .hero-cta-secondary { background: transparent; border: 1px solid var(--color-text); color: var(--color-text); }
+  .hero-cta-secondary:hover { background: var(--color-text); color: var(--color-bg); }
   .hero-image { position: relative; }
   .hero-image-wrapper { aspect-ratio: 4/5; background: var(--color-border-light); border-radius: 12px; overflow: hidden; }
   .hero-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
@@ -188,10 +191,16 @@ const recentPosts = allPosts
         <p class="hero-label fade-in">Founder &amp; CEO</p>
         <h1 class="hero-headline fade-in stagger-1">Search, Video, Content, Commerce, Crypto, AI. <span class="tagline highlight">I've built through them all.</span></h1>
         <p class="hero-bio fade-in stagger-2">25 years building companies at the frontier of internet technology — from early search and streaming video to content networks and e-commerce. I've been part of teams that shaped how people use the web. Today I run <a href="https://ragu.ai" class="subtle-link">Ragu.AI</a> and build AI-native products across <a href="https://tezit.com" class="subtle-link">communication</a>, <a href="https://nourova.com" class="subtle-link">biometrics</a>, and <a href="https://mypa.chat" class="subtle-link">personal AI</a>.</p>
-        <a href="#ventures" class="hero-cta fade-in stagger-3">
-          See what I'm building
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-        </a>
+        <div class="hero-ctas fade-in stagger-3">
+          <a href="#ventures" class="hero-cta">
+            See what I'm building
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+          <a href="/blog" class="hero-cta hero-cta-secondary">
+            Read my dispatches
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+        </div>
       </div>
       <div class="hero-image fade-in stagger-2">
         <div class="hero-image-wrapper">
