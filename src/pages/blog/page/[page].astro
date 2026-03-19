@@ -1,0 +1,192 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  const POSTS_PER_PAGE = 12;
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+
+  return Array.from({ length: totalPages - 1 }, (_, i) => {
+    const page = i + 2;
+    const start = (page - 1) * POSTS_PER_PAGE;
+    const pagePosts = posts.slice(start, start + POSTS_PER_PAGE);
+    return {
+      params: { page: String(page) },
+      props: { pagePosts, page, totalPages, posts },
+    };
+  });
+}
+
+const { pagePosts, page, totalPages } = Astro.props;
+
+function excerpt(body: string, length = 160): string {
+  const text = body
+    .replace(/^#+\s+.*/gm, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/[*_`#>]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return text.length > length ? text.slice(0, length).replace(/\s+\S*$/, '') + '…' : text;
+}
+
+function readingTime(body: string): number {
+  const words = body.replace(/[^a-zA-Z\s]/g, ' ').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
+function formatDate(d: Date): string {
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+const pageNum = Number(page);
+---
+<Layout title={`Writing — Page ${page} — Robertson Price`} description="Notes on AI, building companies, and what happens at the frontier.">
+<style>
+  .blog-page {
+    padding-top: calc(80px + var(--section-gap));
+    padding-bottom: var(--section-gap);
+  }
+  .blog-header {
+    max-width: 720px;
+    margin-bottom: clamp(48px, 6vw, 80px);
+  }
+  .blog-header h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .blog-header .page-indicator {
+    font-size: 0.88rem;
+    color: var(--color-text-tertiary);
+  }
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 40px);
+    margin-bottom: clamp(48px, 6vw, 80px);
+  }
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+  .post-card:hover .card-title { opacity: 0.7; }
+  .card-image {
+    aspect-ratio: 16 / 9;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--color-border-light);
+    margin-bottom: 20px;
+  }
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .post-card:hover .card-image img { transform: scale(1.03); }
+  .card-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+    transition: opacity 0.2s ease;
+  }
+  .card-excerpt {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.8rem;
+    color: var(--color-text-tertiary);
+  }
+  .post-meta .sep { opacity: 0.4; }
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-top: clamp(32px, 4vw, 48px);
+    border-top: 1px solid var(--color-border-light);
+  }
+  .page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+  .page-btn:hover { color: var(--color-text); border-color: var(--color-border); }
+  .page-btn.active { color: var(--color-text); border-color: var(--color-border); background: var(--color-surface); }
+  .page-btn.nav-btn { width: auto; padding: 0 16px; gap: 8px; font-size: 0.82rem; }
+  .page-btn.nav-btn svg { width: 14px; height: 14px; }
+
+  @media (max-width: 900px) { .post-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .post-grid { grid-template-columns: 1fr; } }
+</style>
+<div class="blog-page">
+  <div class="container">
+    <div class="blog-header">
+      <h1>Writing</h1>
+      <p class="page-indicator">Page {page} of {totalPages}</p>
+    </div>
+
+    <div class="post-grid">
+      {pagePosts.map((post: any) => (
+        <a href={`/blog/${post.id}`} class="post-card">
+          <div class="card-image">
+            <img src={`/images/blog/${post.id}.svg`} alt={post.data.title} loading="lazy" />
+          </div>
+          <h2 class="card-title">{post.data.title}</h2>
+          <p class="card-excerpt">{excerpt(post.body || '')}</p>
+          <div class="post-meta">
+            <span>{formatDate(post.data.date)}</span>
+            <span class="sep">·</span>
+            <span>{readingTime(post.body || '')} min read</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <nav class="pagination" aria-label="Pagination">
+      {pageNum > 1 && (
+        <a href={pageNum === 2 ? '/blog' : `/blog/page/${pageNum - 1}`} class="page-btn nav-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+          Prev
+        </a>
+      )}
+      <a href="/blog" class={`page-btn ${pageNum === 1 ? 'active' : ''}`}>1</a>
+      {Array.from({ length: totalPages - 1 }, (_, i) => i + 2).map((p: number) => (
+        <a href={`/blog/page/${p}`} class={`page-btn ${pageNum === p ? 'active' : ''}`}>{p}</a>
+      ))}
+      {pageNum < totalPages && (
+        <a href={`/blog/page/${pageNum + 1}`} class="page-btn nav-btn">
+          Next
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+        </a>
+      )}
+    </nav>
+  </div>
+</div>
+</Layout>

@@ -7,9 +7,10 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/generate-hero-images.js && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate-images": "node scripts/generate-hero-images.js"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.2",

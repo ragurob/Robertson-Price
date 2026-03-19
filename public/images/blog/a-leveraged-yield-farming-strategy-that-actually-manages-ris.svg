@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#FAFAF9"/>
+<path d="M0,76.0 C379.7,30.0 910.4,88.1 1200,51.6" stroke="#D1CFC9" stroke-width="1.01" fill="none" opacity="0.62"/>
+<path d="M0,94.5 C290.3,15.9 953.3,158.5 1200,78.7" stroke="#E8E8E6" stroke-width="0.85" fill="none" opacity="0.59"/>
+<path d="M0,136.5 C307.2,154.7 879.0,61.4 1200,99.6" stroke="#D1CFC9" stroke-width="1.28" fill="none" opacity="0.41"/>
+<path d="M0,158.8 C266.9,250.1 815.5,90.6 1200,188.7" stroke="#D1CFC9" stroke-width="1.47" fill="none" opacity="0.47"/>
+<path d="M0,224.6 C200.2,250.4 935.9,184.3 1200,222.2" stroke="#D1CFC9" stroke-width="0.94" fill="none" opacity="0.55"/>
+<path d="M0,263.0 C284.8,328.9 838.6,157.5 1200,213.6" stroke="#D1CFC9" stroke-width="1.27" fill="none" opacity="0.53"/>
+<path d="M0,262.9 C258.1,222.9 936.3,235.1 1200,255.2" stroke="#D1CFC9" stroke-width="1.28" fill="none" opacity="0.67"/>
+<path d="M0,325.5 C280.4,390.8 834.3,308.5 1200,324.9" stroke="#D1CFC9" stroke-width="1.21" fill="none" opacity="0.43"/>
+<path d="M0,373.7 C310.3,357.2 802.6,370.5 1200,330.6" stroke="#D1CFC9" stroke-width="1.55" fill="none" opacity="0.62"/>
+<path d="M0,387.0 C290.5,432.0 823.3,474.6 1200,413.3" stroke="#D1CFC9" stroke-width="0.81" fill="none" opacity="0.42"/>
+<path d="M0,429.4 C394.6,417.1 810.2,478.0 1200,405.5" stroke="#D1CFC9" stroke-width="1.53" fill="none" opacity="0.69"/>
+<path d="M0,461.8 C398.9,442.3 940.1,489.7 1200,455.5" stroke="#D1CFC9" stroke-width="1.01" fill="none" opacity="0.65"/>
+<path d="M0,530.2 C248.5,486.6 803.5,489.7 1200,483.7" stroke="#D1CFC9" stroke-width="0.83" fill="none" opacity="0.58"/>
+<path d="M0,568.1 C203.1,457.6 851.9,490.4 1200,531.4" stroke="#D1CFC9" stroke-width="1.27" fill="none" opacity="0.65"/>
+<path d="M0,552.0 C349.6,496.5 941.2,507.4 1200,565.8" stroke="#D1CFC9" stroke-width="0.97" fill="none" opacity="0.58"/>
+<line x1="0" y1="610" x2="0" y2="601.7" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="100" y1="610" x2="100" y2="602.7" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="200" y1="610" x2="200" y2="600.9" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="300" y1="610" x2="300" y2="599.1" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="400" y1="610" x2="400" y2="601.3" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="500" y1="610" x2="500" y2="599.7" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="600" y1="610" x2="600" y2="604.5" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="700" y1="610" x2="700" y2="601.2" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="800" y1="610" x2="800" y2="605.0" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="900" y1="610" x2="900" y2="605.1" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="1000" y1="610" x2="1000" y2="603.2" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="1100" y1="610" x2="1100" y2="599.5" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="1200" y1="610" x2="1200" y2="600.2" stroke="#D1CFC9" stroke-width="0.8" opacity="0.5"/>
+<line x1="308.5" y1="136.4" x2="668.5" y2="384.5" stroke="#D1CFC9" stroke-width="1" opacity="0.3"/>
+</svg>

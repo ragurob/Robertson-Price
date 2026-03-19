@@ -2,8 +2,9 @@
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
-const { title, description = "Robertson Price is a serial founder and CEO who has been building at the frontier of internet technology for over 25 years." } = Astro.props;
+const { title, description = "Robertson Price is a serial founder and CEO who has been building at the frontier of internet technology for over 25 years.", ogImage } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +18,8 @@ const { title, description = "Robertson Price is a serial founder and CEO who ha
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://robertsonprice.com" />
   <meta name="twitter:card" content="summary_large_image" />
+  {ogImage && <meta property="og:image" content={`https://robertsonprice.com${ogImage}`} />}
+  {ogImage && <meta name="twitter:image" content={`https://robertsonprice.com${ogImage}`} />}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
